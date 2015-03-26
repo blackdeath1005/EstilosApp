@@ -15,6 +15,10 @@ namespace ProyectoEstilos
     {
 
         [OperationContract]
+        [WebInvoke(Method = "GET", UriTemplate = "ObtenerListaEstablecimiento/", ResponseFormat = WebMessageFormat.Json)]
+        List<Establecimiento> ObtenerListaEstablecimiento();
+
+        [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "ObtenerEstablecimiento/{codEstablecimiento}", ResponseFormat = WebMessageFormat.Json)]
         Establecimiento ObtenerEstablecimiento(string codEstablecimiento);
 

@@ -82,7 +82,42 @@ namespace ProyectoEstilos.Persistencia
 
             return establecimientoEncontrado;
         }
+        public List<Establecimiento> ListarEstablecimiento()
+        {
+            List<Establecimiento> establecimientos = new List<Establecimiento>();
+            Establecimiento usuarioEstablecimiento = new Establecimiento();
 
+            string sql = "select * from establecimiento";
+
+            using (SqlConnection con = new SqlConnection(ConexionBD.ObtenerCadena()))
+            {
+                con.Open();
+                using (SqlCommand com = new SqlCommand(sql, con))
+                {
+                    using (SqlDataReader resultado = com.ExecuteReader())
+                    {
+                        while (resultado.Read())
+                        {
+                            usuarioEstablecimiento = new Establecimiento()
+                            {
+                                idEstablecimiento = int.Parse(resultado["idEstablecimiento"].ToString()),
+                                noEstablecimiento = resultado["noEstablecimiento"].ToString(),
+                                desEstablecimiento = resultado["desEstablecimiento"].ToString(),
+                                direccion = resultado["direccion"].ToString(),
+                                latitud = resultado["latitud"].ToString(),
+                                longitud = resultado["longitud"].ToString(),
+                                telefono = resultado["telefono"].ToString(),
+                                horario = resultado["horario"].ToString(),
+                                correoEstablecimiento = resultado["correoEstablecimiento"].ToString(),
+                                imagen = resultado["imagen"].ToString(),
+                            };
+                            establecimientos.Add(usuarioEstablecimiento);
+                        }
+                    }
+                }
+            }
+            return establecimientos;
+        }
 
         /***************ESTILISTA**********************/
         public List<Estilista> ObtenerListaEstilistaEstablecimiento(int id)

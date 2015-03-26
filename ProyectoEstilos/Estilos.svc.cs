@@ -19,6 +19,17 @@ namespace ProyectoEstilos
         private EstilosDAO dao = new EstilosDAO();
 
         /***************ESTABLECIMIENTO**********************/
+        public List<Establecimiento> ObtenerListaEstablecimiento()
+        {
+            List<Establecimiento> listaEstablecimiento = dao.ListarEstablecimiento();
+
+            if (listaEstablecimiento != null && listaEstablecimiento.Count > 0)
+                return listaEstablecimiento;
+            else
+            {
+                throw new WebFaultException<Excepcion>(new Excepcion() { Mensaje = "No hay establecimientos registrados" }, HttpStatusCode.InternalServerError);
+            }
+        }
         public Establecimiento ObtenerEstablecimiento(string codEstablecimiento)
         {
             Establecimiento establecimiento = dao.ObtenerEstablecimiento(int.Parse(codEstablecimiento));
