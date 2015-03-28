@@ -43,7 +43,7 @@ namespace ProyectoEstilos
         Usuario RegistrarUsuario(string nombre, string correo, string pass);
 
         [OperationContract]
-        [WebInvoke(Method = "GET", UriTemplate = "ObtenerListaFavoritoUsuario/?codUsuario={codUsuario}", ResponseFormat = WebMessageFormat.Json)]
+        [WebInvoke(Method = "GET", UriTemplate = "ObtenerListaFavoritoUsuario/{codUsuario}", ResponseFormat = WebMessageFormat.Json)]
         List<Favorito> ObtenerListaFavoritoUsuario(string codUsuario);
 
         [OperationContract]
