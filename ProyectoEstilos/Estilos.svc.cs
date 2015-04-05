@@ -155,6 +155,18 @@ namespace ProyectoEstilos
             }
         }
 
+        public List<Reserva> ObtenerListaReservaUsuarioDesc(string codUsuario)
+        {
+            List<Reserva> listaReservas = dao.ListarReservaUsuarioDesc(int.Parse(codUsuario));
+
+            if (listaReservas != null && listaReservas.Count > 0)
+                return listaReservas;
+            else
+            {
+                throw new WebFaultException<Excepcion>(new Excepcion() { Mensaje = "No tiene reservas registradas" }, HttpStatusCode.InternalServerError);
+            }
+        }
+
         public Reserva RegistrarReserva(string codUsuario, string codEstablecimiento, string codEstilista, string codServicio, string hora)
         {
             Reserva reserva = dao.RegistrarReserva(int.Parse(codUsuario), int.Parse(codEstablecimiento), int.Parse(codEstilista), int.Parse(codServicio), hora);

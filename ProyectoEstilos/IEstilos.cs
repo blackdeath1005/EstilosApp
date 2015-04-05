@@ -59,6 +59,10 @@ namespace ProyectoEstilos
         List<Reserva> ObtenerListaReservaUsuario(string codUsuario);
 
         [OperationContract]
+        [WebInvoke(Method = "GET", UriTemplate = "ObtenerListaReservaUsuarioDesc/{codUsuario}", ResponseFormat = WebMessageFormat.Json)]
+        List<Reserva> ObtenerListaReservaUsuarioDesc(string codUsuario);
+
+        [OperationContract]
         [WebInvoke(Method = "GET", UriTemplate = "RegistrarReserva/?codUsuario={codUsuario}&codEstablecimiento={codEstablecimiento}&codEstilista={codEstilista}&codServicio={codServicio}&hora={hora}", ResponseFormat = WebMessageFormat.Json)]
         Reserva RegistrarReserva(string codUsuario, string codEstablecimiento, string codEstilista, string codServicio, string hora);
 

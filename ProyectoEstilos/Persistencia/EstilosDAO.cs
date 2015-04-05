@@ -541,6 +541,41 @@ namespace ProyectoEstilos.Persistencia
             }
             return reservas;
         }
+        public List<Reserva> ListarReservaUsuarioDesc(int idUsu)
+        {
+            List<Reserva> reservas = new List<Reserva>();
+            Reserva reservaEncontrado = new Reserva();
+
+            string sql = "select * from reserva where idUsuario = " + idUsu + " order by hora DESC";
+
+            using (SqlConnection con = new SqlConnection(ConexionBD.ObtenerCadena()))
+            {
+                con.Open();
+                using (SqlCommand com = new SqlCommand(sql, con))
+                {
+                    using (SqlDataReader resultado = com.ExecuteReader())
+                    {
+                        while (resultado.Read())
+                        {
+                            reservaEncontrado = new Reserva()
+                            {
+                                idReserva = int.Parse(resultado["idReserva"].ToString()),
+                                idUsuario = int.Parse(resultado["idUsuario"].ToString()),
+                                idEstablecimiento = int.Parse(resultado["idEstablecimiento"].ToString()),
+                                noEstablecimiento = resultado["noEstablecimiento"].ToString(),
+                                idEstilista = int.Parse(resultado["idEstilista"].ToString()),
+                                noEstilista = resultado["noEstilista"].ToString(),
+                                idServicio = int.Parse(resultado["idServicio"].ToString()),
+                                noServicio = resultado["noServicio"].ToString(),
+                                hora = resultado["hora"].ToString(),
+                            };
+                            reservas.Add(reservaEncontrado);
+                        }
+                    }
+                }
+            }
+            return reservas;
+        }
         public Reserva CancelarReserva(int id)
         {
             Reserva reservaEliminado = new Reserva();
