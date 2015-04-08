@@ -337,7 +337,7 @@ namespace ProyectoEstilos.Persistencia
 
             Favorito favoritoCreado = new Favorito();
 
-            string sql = "INSERT INTO favorito VALUES (@idUsu,@idEst,@noEst,@desEst,@dir,@lat,@lon,@tel,@hor,@corEst)";
+            string sql = "INSERT INTO favorito VALUES (@idUsu,@idEst,@noEst,@desEst,@dir,@lat,@lon,@tel,@hor,@corEst,@ima)";
             using (SqlConnection con = new SqlConnection(ConexionBD.ObtenerCadena()))
             {
                 con.Open();
@@ -353,6 +353,7 @@ namespace ProyectoEstilos.Persistencia
                     com.Parameters.Add(new SqlParameter("@tel", establecimientoEncontrado.telefono.ToString()));
                     com.Parameters.Add(new SqlParameter("@hor", establecimientoEncontrado.horario.ToString()));
                     com.Parameters.Add(new SqlParameter("@corEst", establecimientoEncontrado.correoEstablecimiento.ToString()));
+                    com.Parameters.Add(new SqlParameter("@ima", establecimientoEncontrado.imagen.ToString()));
                     com.ExecuteNonQuery();
                 }
             }
@@ -397,7 +398,8 @@ namespace ProyectoEstilos.Persistencia
                                 longitud = resultado["longitud"].ToString(),
                                 telefono = resultado["telefono"].ToString(),
                                 horario = resultado["horario"].ToString(),
-                                correoEstablecimiento = resultado["correoEstablecimiento"].ToString()
+                                correoEstablecimiento = resultado["correoEstablecimiento"].ToString(),
+                                imagen = resultado["imagen"].ToString()
                             };
                             favoritos.Add(favoritoEncontrado);
                         }
@@ -454,6 +456,7 @@ namespace ProyectoEstilos.Persistencia
                                 telefono = resultado["telefono"].ToString(),
                                 horario = resultado["horario"].ToString(),
                                 correoEstablecimiento = resultado["correoEstablecimiento"].ToString(),
+                                imagen = resultado["imagen"].ToString(),
                             };
                         }
                     }

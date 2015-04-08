@@ -33,5 +33,7 @@ namespace ProyectoEstilos.Dominio
         public string horario { get; set; }
         [DataMember]
         public string correoEstablecimiento { get; set; }
+        [DataMember]
+        public string imagen { get; set; }
     }
 }
