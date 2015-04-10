@@ -38,6 +38,8 @@ namespace ProyectoEstilos.Persistencia
                                 horario = resultado["horario"].ToString(),
                                 correoEstablecimiento = resultado["correoEstablecimiento"].ToString(),
                                 imagen = resultado["imagen"].ToString(),
+                                imagen2 = resultado["imagen2"].ToString(),
+                                imagen3 = resultado["imagen3"].ToString(),
                             };
                         }
                     }
@@ -74,6 +76,8 @@ namespace ProyectoEstilos.Persistencia
                                 horario = resultado["horario"].ToString(),
                                 correoEstablecimiento = resultado["correoEstablecimiento"].ToString(),
                                 imagen = resultado["imagen"].ToString(),
+                                imagen2 = resultado["imagen2"].ToString(),
+                                imagen3 = resultado["imagen3"].ToString(),
                             };
                         }
                     }
@@ -110,6 +114,8 @@ namespace ProyectoEstilos.Persistencia
                                 horario = resultado["horario"].ToString(),
                                 correoEstablecimiento = resultado["correoEstablecimiento"].ToString(),
                                 imagen = resultado["imagen"].ToString(),
+                                imagen2 = resultado["imagen2"].ToString(),
+                                imagen3 = resultado["imagen3"].ToString(),
                             };
                             establecimientos.Add(usuarioEstablecimiento);
                         }
@@ -337,7 +343,7 @@ namespace ProyectoEstilos.Persistencia
 
             Favorito favoritoCreado = new Favorito();
 
-            string sql = "INSERT INTO favorito VALUES (@idUsu,@idEst,@noEst,@desEst,@dir,@lat,@lon,@tel,@hor,@corEst,@ima)";
+            string sql = "INSERT INTO favorito VALUES (@idUsu,@idEst,@noEst,@desEst,@dir,@lat,@lon,@tel,@hor,@corEst,@ima,@ima2,@ima3)";
             using (SqlConnection con = new SqlConnection(ConexionBD.ObtenerCadena()))
             {
                 con.Open();
@@ -354,6 +360,8 @@ namespace ProyectoEstilos.Persistencia
                     com.Parameters.Add(new SqlParameter("@hor", establecimientoEncontrado.horario.ToString()));
                     com.Parameters.Add(new SqlParameter("@corEst", establecimientoEncontrado.correoEstablecimiento.ToString()));
                     com.Parameters.Add(new SqlParameter("@ima", establecimientoEncontrado.imagen.ToString()));
+                    com.Parameters.Add(new SqlParameter("@ima2", establecimientoEncontrado.imagen2.ToString()));
+                    com.Parameters.Add(new SqlParameter("@ima3", establecimientoEncontrado.imagen3.ToString()));
                     com.ExecuteNonQuery();
                 }
             }
@@ -399,7 +407,9 @@ namespace ProyectoEstilos.Persistencia
                                 telefono = resultado["telefono"].ToString(),
                                 horario = resultado["horario"].ToString(),
                                 correoEstablecimiento = resultado["correoEstablecimiento"].ToString(),
-                                imagen = resultado["imagen"].ToString()
+                                imagen = resultado["imagen"].ToString(),
+                                imagen2 = resultado["imagen2"].ToString(),
+                                imagen3 = resultado["imagen3"].ToString()
                             };
                             favoritos.Add(favoritoEncontrado);
                         }
@@ -457,6 +467,8 @@ namespace ProyectoEstilos.Persistencia
                                 horario = resultado["horario"].ToString(),
                                 correoEstablecimiento = resultado["correoEstablecimiento"].ToString(),
                                 imagen = resultado["imagen"].ToString(),
+                                imagen2 = resultado["imagen2"].ToString(),
+                                imagen3 = resultado["imagen3"].ToString(),
                             };
                         }
                     }
@@ -549,7 +561,7 @@ namespace ProyectoEstilos.Persistencia
             List<Reserva> reservas = new List<Reserva>();
             Reserva reservaEncontrado = new Reserva();
 
-            string sql = "select * from reserva where idUsuario = " + idUsu + " order by hora DESC";
+            string sql = "select TOP 10 * from reserva where idUsuario = " + idUsu + " order by hora DESC";
 
             using (SqlConnection con = new SqlConnection(ConexionBD.ObtenerCadena()))
             {

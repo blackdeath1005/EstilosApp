@@ -35,5 +35,9 @@ namespace ProyectoEstilos.Dominio
         public string correoEstablecimiento { get; set; }
         [DataMember]
         public string imagen { get; set; }
+        [DataMember]
+        public string imagen2 { get; set; }
+        [DataMember]
+        public string imagen3 { get; set; }
     }
 }
